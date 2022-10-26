@@ -52,9 +52,9 @@ end
 go
 
 
-execute usp_create_Cliente '2','Xd','xD','XD@XD.com','1234567890','XD','xD'
+execute usp_create_Cliente '1','Xd','xD','XD@XD.com','1234567890','XD','xD'
 
-execute usp_Update_Cliente '2','Gian','Rios','Gian-5634@hotmail.com','3103058570','No se','Armenia'
+execute usp_Update_Cliente '1','Gian','Rios','Gian-5634@hotmail.com','3103058570','No se','Armenia'
 
 execute usp_delete_cliente '2'
 
