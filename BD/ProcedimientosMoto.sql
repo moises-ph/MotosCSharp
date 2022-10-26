@@ -69,3 +69,15 @@ end
 go
 
 execute usp_delete_Moto '1'
+
+go
+create procedure usp_Listar_Moto
+as
+begin
+	SELECT '0' as IdCompra, 'Seleccione un Cliente' as Moto
+	union
+	SELECT IdCompra as IdCompra, Marca as Moto from Moto;
+end
+go
+
+execute usp_Listar_Moto
