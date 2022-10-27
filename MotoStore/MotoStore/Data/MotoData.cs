@@ -10,16 +10,30 @@ namespace MotoStore.Data
 {
     public class MotoData
     {
-        public static bool crearMoto(Moto moto)
+        public static List<OutPutModel> crearMoto(Moto moto)
         {
             ConexionBD objConexion = new ConexionBD();
-            string sentencia = $"usp_create_Moto '{moto.Marca}', '{moto.Modelo}', {moto.Cilindraje}, '{moto.Freno}', '{moto.Llantas}', '{moto.Refirigeracion}', '{moto.Suspension}', {moto.ValorMoto}, {moto.ValorSoat}, {moto.ValorTotal} , '{moto.IdCliente}'";
+            List<OutPutModel> list = new List<OutPutModel>();
+            string sentencia = $"usp_create_Moto '{moto.Marca}', '{moto.Modelo}', {moto.Cilindraje}, '{moto.Freno}', '{moto.Llantas}', '{moto.Refrigeracion}', '{moto.Suspension}', {moto.ValorMoto}, {moto.ValorSoat}, {moto.valorTotal} , '{moto.IdCliente}'";
             if(!objConexion.EjecutarSentencia(sentencia, false))
             {
-                return false;
+                list.Add(new OutPutModel()
+                {
+                    Error = true,
+                    Message = objConexion.Error
+                });
+                return list;
             }
-            objConexion = null;
-            return true;
+            else
+            {
+                objConexion = null;
+                list.Add(new OutPutModel()
+                {
+                    Error = false,
+                    Message = ""
+                });
+                return list;
+            }
         }
 
         public static List<Moto> consultarMoto(string id)
@@ -34,19 +48,19 @@ namespace MotoStore.Data
                 {
                     consultas.Add(new Moto()
                     {
-                        IdCompra = (int)dr["IdCompra"],
-                        FechaCompra = DateTime.Parse(dr["FechaCompra"].ToString()),
+                        IdCompra = Convert.ToInt32(dr["IdCompra"]),
+                        FechaCompra = Convert.ToDateTime(dr["FechaCompra"].ToString()),
                         Marca = dr["Marca"].ToString(),
                         Modelo = dr["Modelo"].ToString(),
-                        Cilindraje = (int)dr["Cilindraje"],
+                        Cilindraje = Convert.ToInt32(dr["Cilindraje"]),
                         Freno = dr["Freno"].ToString(),
                         Llantas = dr["Llantas"].ToString(),
-                        Refirigeracion = dr["Regrigeracion"].ToString(),
+                        Refrigeracion = dr["Refrigeracion"].ToString(),
                         Suspension = dr["Suspension"].ToString(),
-                        ValorMoto = (int)dr["ValorMoto"],
-                        ValorSoat = (int)dr["ValorSoat"],
-                        ValorTotal = (int)dr["ValorTotal"],
-                        IdCliente = dr["IdCliente"].ToString()
+                        ValorMoto = Convert.ToInt32(dr["ValorMoto"]),
+                        ValorSoat = Convert.ToInt32(dr["ValorSoat"]),
+                        valorTotal = Convert.ToInt32(dr["ValorTotal"]),
+                        IdCliente = dr["Cliente"].ToString()
                     });
                 }
                 return consultas;
@@ -69,19 +83,19 @@ namespace MotoStore.Data
                 {
                     consultas.Add(new Moto()
                     {
-                        IdCompra = (int)dr["IdCompra"],
-                        FechaCompra = DateTime.Parse(dr["FechaCompra"].ToString()),
+                        IdCompra = Convert.ToInt32(dr["IdCompra"]),
+                        FechaCompra = Convert.ToDateTime(dr["FechaCompra"].ToString()),
                         Marca = dr["Marca"].ToString(),
                         Modelo = dr["Modelo"].ToString(),
-                        Cilindraje = (int)dr["Cilindraje"],
+                        Cilindraje = Convert.ToInt32(dr["Cilindraje"]),
                         Freno = dr["Freno"].ToString(),
                         Llantas = dr["Llantas"].ToString(),
-                        Refirigeracion = dr["Regrigeracion"].ToString(),
+                        Refrigeracion = dr["Refrigeracion"].ToString(),
                         Suspension = dr["Suspension"].ToString(),
-                        ValorMoto = (int)dr["ValorMoto"],
-                        ValorSoat = (int)dr["ValorSoat"],
-                        ValorTotal = (int)dr["valorTotal"],
-                        IdCliente = dr["IdCliente"].ToString()
+                        ValorMoto = Convert.ToInt32(dr["ValorMoto"]),
+                        ValorSoat = Convert.ToInt32(dr["ValorSoat"]),
+                        valorTotal = Convert.ToInt32(dr["ValorTotal"]),
+                        IdCliente = dr["Cliente"].ToString()
                     });
                 }
                 return consultas;

@@ -10,17 +10,27 @@ namespace MotoStore.Data
 {
     public class ClienteData
     {
-        public static bool crearCliente(Cliente cliente)
+        public static List<OutPutModel> crearCliente(Cliente cliente)
         {
             ConexionBD objConexion = new ConexionBD();
+            List<OutPutModel> list = new List<OutPutModel>();
             string sentencia = $"usp_create_Cliente '{cliente.IdCliente}', '{cliente.NombreCliente}', '{cliente.ApellidoCliente}', '{cliente.Correo}', '{cliente.Telefono}', '{cliente.Direccion}', '{cliente.Ciudad}'";
             if(!objConexion.EjecutarSentencia(sentencia, false))
             {
-                Console.WriteLine(objConexion.Error);
-                return false;
+                list.Add(new OutPutModel()
+                {
+                    Error = true,
+                    Message = objConexion.Error
+                });
+                return list;
             }
             objConexion = null;
-            return true;
+            list.Add(new OutPutModel()
+            {
+                Error= false,
+                Message = ""
+            });
+            return list;
         }
 
         public static bool actualizarCliente(Cliente cliente)

@@ -22,7 +22,7 @@ namespace MotoStore.Controllers
         }
 
         // POST api/<controller>
-        public bool Post([FromBody] Moto oMoto)
+        public List<OutPutModel> Post([FromBody] Moto oMoto)
         {
             return MotoData.crearMoto(oMoto);
         }

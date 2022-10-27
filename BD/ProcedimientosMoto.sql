@@ -30,7 +30,7 @@ create procedure usp_read_Moto
 	@IdCompra int
 as
 begin
-	select IdCompra,Marca,Modelo,Cilindraje,Freno,Llantas,Refrigeracion,Suspension,ValorMoto,ValorSoat,valorTotal , NombreCliente + ' ' + ApellidoCliente as Cliente from Moto inner join Cliente on Moto.IdCliente = Cliente.IdCliente where IdCompra=@IdCompra
+	select IdCompra,FechaCompra,Marca,Modelo,Cilindraje,Freno,Llantas,Refrigeracion,Suspension,ValorMoto,ValorSoat,valorTotal , NombreCliente + ' ' + ApellidoCliente as Cliente from Moto inner join Cliente on Moto.IdCliente = Cliente.IdCliente where IdCompra=@IdCompra
 end
 go
 

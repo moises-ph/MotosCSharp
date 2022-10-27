@@ -14,11 +14,11 @@ namespace MotoStore.Models
         public int Cilindraje { get; set; }
         public string Freno { get; set; }
         public string Llantas { get; set; }
-        public string Refirigeracion { get; set; }
+        public string Refrigeracion { get; set; }
         public string Suspension { get; set; }
         public Double ValorMoto { get; set; }
         public Double ValorSoat { get; set; }
-        public Double ValorTotal { get; set; }
+        public Double valorTotal { get; set; }
         public string IdCliente { get; set; }
     }
 }
