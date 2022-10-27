@@ -6,6 +6,9 @@ use DB_Empresa;
 CREATE TYPE Cilindraje
 from int
 
+drop table Cliente
+drop table Moto
+
 go
 CREATE TABLE Cliente(
 	IdCliente varchar(10) primary key,

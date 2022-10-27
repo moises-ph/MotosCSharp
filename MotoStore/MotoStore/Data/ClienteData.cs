@@ -16,6 +16,7 @@ namespace MotoStore.Data
             string sentencia = $"usp_create_Cliente '{cliente.IdCliente}', '{cliente.NombreCliente}', '{cliente.ApellidoCliente}', '{cliente.Correo}', '{cliente.Telefono}', '{cliente.Direccion}', '{cliente.Ciudad}'";
             if(!objConexion.EjecutarSentencia(sentencia, false))
             {
+                Console.WriteLine(objConexion.Error);
                 return false;
             }
             objConexion = null;
@@ -54,19 +55,25 @@ namespace MotoStore.Data
             if (objConexion.Consultar(sentencia, false))
             {
                 SqlDataReader reader = objConexion.Reader;
-                reader.Read();
-                arrCliente.Add(new Cliente() {
-                    IdCliente = reader["IdCliente"].ToString(),
-                    NombreCliente = reader["NombreCliente"].ToString(),
-                    ApellidoCliente = reader["ApellidoCliente"].ToString(),
-                    Correo = reader["Correo"].ToString(),
-                    Telefono = reader["Telefono"].ToString(),
-                    Direccion = reader["Direccion"].ToString(),
-                    Ciudad = reader["Ciudad"].ToString()
-                });
+                while (reader.Read())
+                {
+                    arrCliente.Add(new Cliente()
+                    {
+                        IdCliente = reader["IdCliente"].ToString(),
+                        NombreCliente = reader["NombreCliente"].ToString(),
+                        ApellidoCliente = reader["ApellidoCliente"].ToString(),
+                        Correo = reader["Correo"].ToString(),
+                        Telefono = reader["Telefono"].ToString(),
+                        Direccion = reader["Direccion"].ToString(),
+                        Ciudad = reader["Ciudad"].ToString()
+                    });
+                }
                 return arrCliente;
             }
-            return arrCliente;
+            else
+            {
+                return arrCliente;
+            }
         }
 
         public static List<Cliente> listarClientes()
