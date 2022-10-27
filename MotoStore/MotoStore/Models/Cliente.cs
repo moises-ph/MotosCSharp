@@ -11,7 +11,7 @@ namespace MotoStore.Models
         public string NombreCliente { get => NombreCliente; set => NombreCliente = value; }
         public string ApellidoCliente { get => ApellidoCliente; set => ApellidoCliente = value; }
         public string Correo { get => Correo; set => Correo = value; }
-        public int Telefono { get => Telefono; set => Telefono = value; }
+        public string Telefono { get => Telefono; set => Telefono = value; }
         public string Direccion { get => Direccion; set => Direccion = value; }
         public string Ciudad { get => Ciudad; set => Ciudad = value; }
     }

@@ -1,6 +1,11 @@
 CREATE DATABASE MotorStore;
 USE MotorStore;
-use oli
+
+use DB_Empresa;
+
+CREATE TYPE Cilindraje
+from int
+
 go
 CREATE TABLE Cliente(
 	IdCliente varchar(10) primary key,
@@ -14,18 +19,18 @@ CREATE TABLE Cliente(
 go
 go
 CREATE TABLE Moto(
-	IdCompra varchar(10) primary key,
-	FechaCompra date  not null,
+	IdCompra int identity(0, 1) primary key,
+	FechaCompra datetime default getdate(),
 	Marca varchar(50) not null,
 	Modelo varchar(4) not null,
-	Cilindraje int not null,
+	Cilindraje cilindraje not null,
 	Freno varchar(50) not null,
 	Llantas varchar(50) not null, 
 	Refrigeracion varchar(50) not null,
 	Suspension varchar(50) not null,
-	ValorMoto float not null,
-	ValorSoat float not null,
-	valorTotal float not null,
+	ValorMoto money not null,
+	ValorSoat money not null,
+	valorTotal money not null,
     IdCliente varchar(10) FOREIGN KEY REFERENCES Cliente(IdCliente)
 );
 go

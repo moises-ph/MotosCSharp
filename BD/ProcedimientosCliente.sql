@@ -1,5 +1,6 @@
 USE MotorStore
-use oli
+
+use DB_Empresa;
 
 /*Creacion de procedimientos Cliente*/
 
@@ -27,6 +28,7 @@ begin
 end
 go
 	execute usp_read_Cliente '2'
+
 go
 create procedure usp_Update_Cliente
 	@IdCliente varchar(10) ,
@@ -38,7 +40,7 @@ create procedure usp_Update_Cliente
 	@Ciudad varchar(100) 
 as
 begin
-	Update Cliente set  IdCliente=@IdCliente,NombreCliente=@NombreCliente,ApellidoCliente=@ApellidoCliente,Correo=@Correo,Telefono=@Telefono,Direccion=@Direccion,Ciudad=@Ciudad where  IdCliente=@IdCliente;
+	Update Cliente set  NombreCliente=@NombreCliente,ApellidoCliente=@ApellidoCliente,Correo=@Correo,Telefono=@Telefono,Direccion=@Direccion,Ciudad=@Ciudad where  IdCliente=@IdCliente;
 end
 go
 
@@ -55,9 +57,7 @@ go
 create procedure usp_Listar_Cliente
 as
 begin
-	SELECT '0' as IdCliente, 'Seleccione un Cliente' as NombreCliente
-	union
-	SELECT IdCliente as Identificacion, NombreCliente as Nombre from Cliente;
+	SELECT * from Cliente;
 end
 go
 
@@ -68,6 +68,6 @@ execute usp_Update_Cliente '1','Gian','Rios','Gian-5634@hotmail.com','3103058570
 
 execute usp_delete_cliente '2'
 
-execute usp_read_Cliente '2'
+execute usp_read_Cliente '1'
 
 execute usp_Listar_Cliente

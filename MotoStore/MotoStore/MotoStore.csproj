@@ -87,6 +87,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Data\ClienteData.cs" />
     <Compile Include="Data\ConexionBD.cs" />
+    <Compile Include="Data\MotoData.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

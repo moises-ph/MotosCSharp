@@ -57,10 +57,11 @@ namespace MotoStore.Data
             try
             {
                 //"Data Source=ARMDFPCCIFSD036\\SQLEXPRESS;Initial Catalog = DB_API_DATOS; Integrated Security = True"
-                strCadenaCnx = "Data Source=MOISESPH;Initial Catalog = MotorStore; Integrated Security = True";
+                strCadenaCnx = "Data Source=ARMDFPCCIFSD036\\SQLEXPRESS;Initial Catalog = MotorStore; Integrated Security = True";
                 objCnnBD.ConnectionString = strCadenaCnx;
                 objCnnBD.Open();
                 blnBDAbierta = true;    
+
                 return true;
             }
             catch (Exception ex)
