@@ -57,7 +57,7 @@ namespace MotoStore.Data
             try
             {
                 //"Data Source=ARMDFPCCIFSD036\\SQLEXPRESS;Initial Catalog = DB_API_DATOS; Integrated Security = True"
-                strCadenaCnx = "Data Source=ARMDFPCCIFSD036\\SQLEXPRESS;Initial Catalog = MotorStore; Integrated Security = True";
+                strCadenaCnx = "workstation id=BDMotoCSharp.mssql.somee.com;packet size=4096;user id=Cohnante_SQLLogin_1;pwd=6j9egvtg8x;data source=BDMotoCSharp.mssql.somee.com;persist security info=False;initial catalog=BDMotoCSharp";
                 objCnnBD.ConnectionString = strCadenaCnx;
                 objCnnBD.Open();
                 blnBDAbierta = true;    

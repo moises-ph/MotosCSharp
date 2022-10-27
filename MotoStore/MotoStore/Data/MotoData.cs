@@ -9,6 +9,10 @@ namespace MotoStore.Data
 {
     public class MotoData
     {
-        public static 
+        public static bool crearMoto(Moto moto)
+        {
+            ConexionBD objConexion = new ConexionBD();
+            string sentencia = $"usp_create_Moto '{moto.Marca}', '{moto.Modelo}', {moto.Cilindraje}";
+        }
     }
 }
