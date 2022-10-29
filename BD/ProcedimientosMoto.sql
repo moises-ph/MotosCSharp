@@ -23,24 +23,24 @@ begin
 end
 go
 
-execute usp_create_Moto 'XD','XD',150,'XD','XD','XD','XD',10,10,10,'1'
+execute usp_create_Moto 'XD','XD',150,'XD','XD','XD','XD',10,10,10,'2'
 
 go
 create procedure usp_read_Moto
 	@IdCompra int
 as
 begin
-	select * from Moto where IdCompra=@IdCompra
+	select IdCompra,FechaCompra,Marca,Modelo,Cilindraje,Freno,Llantas,Refrigeracion,Suspension,ValorMoto,ValorSoat,valorTotal , NombreCliente + ' ' + ApellidoCliente as Cliente from Moto inner join Cliente on Moto.IdCliente = Cliente.IdCliente where IdCompra=@IdCompra
 end
 go
 
-execute usp_read_Moto '1'
+execute usp_read_Moto '2'
 
 go
 create procedure usp_Listar_Moto
 as
 begin
-	SELECT * from Moto;
+	select IdCompra,FechaCompra,Marca,Modelo,Cilindraje,Freno,Llantas,Refrigeracion,Suspension,ValorMoto,ValorSoat,valorTotal , NombreCliente + ' ' + ApellidoCliente as Cliente from Moto inner join Cliente on Moto.IdCliente = Cliente.IdCliente
 end
 go
 

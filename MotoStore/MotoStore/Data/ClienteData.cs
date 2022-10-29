@@ -10,16 +10,27 @@ namespace MotoStore.Data
 {
     public class ClienteData
     {
-        public static bool crearCliente(Cliente cliente)
+        public static List<OutPutModel> crearCliente(Cliente cliente)
         {
             ConexionBD objConexion = new ConexionBD();
+            List<OutPutModel> list = new List<OutPutModel>();
             string sentencia = $"usp_create_Cliente '{cliente.IdCliente}', '{cliente.NombreCliente}', '{cliente.ApellidoCliente}', '{cliente.Correo}', '{cliente.Telefono}', '{cliente.Direccion}', '{cliente.Ciudad}'";
             if(!objConexion.EjecutarSentencia(sentencia, false))
             {
-                return false;
+                list.Add(new OutPutModel()
+                {
+                    Error = true,
+                    Message = objConexion.Error
+                });
+                return list;
             }
             objConexion = null;
-            return true;
+            list.Add(new OutPutModel()
+            {
+                Error= false,
+                Message = ""
+            });
+            return list;
         }
 
         public static bool actualizarCliente(Cliente cliente)
@@ -54,19 +65,25 @@ namespace MotoStore.Data
             if (objConexion.Consultar(sentencia, false))
             {
                 SqlDataReader reader = objConexion.Reader;
-                reader.Read();
-                arrCliente.Add(new Cliente() {
-                    IdCliente = reader["IdCliente"].ToString(),
-                    NombreCliente = reader["NombreCliente"].ToString(),
-                    ApellidoCliente = reader["ApellidoCliente"].ToString(),
-                    Correo = reader["Correo"].ToString(),
-                    Telefono = reader["Telefono"].ToString(),
-                    Direccion = reader["Direccion"].ToString(),
-                    Ciudad = reader["Ciudad"].ToString()
-                });
+                while (reader.Read())
+                {
+                    arrCliente.Add(new Cliente()
+                    {
+                        IdCliente = reader["IdCliente"].ToString(),
+                        NombreCliente = reader["NombreCliente"].ToString(),
+                        ApellidoCliente = reader["ApellidoCliente"].ToString(),
+                        Correo = reader["Correo"].ToString(),
+                        Telefono = reader["Telefono"].ToString(),
+                        Direccion = reader["Direccion"].ToString(),
+                        Ciudad = reader["Ciudad"].ToString()
+                    });
+                }
                 return arrCliente;
             }
-            return arrCliente;
+            else
+            {
+                return arrCliente;
+            }
         }
 
         public static List<Cliente> listarClientes()
