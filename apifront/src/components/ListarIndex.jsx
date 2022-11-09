@@ -11,7 +11,7 @@ function Listar() {
 
     const EliminarCliente = async(e)=>{
         console.log(e.target.value);
-        await axios.delete(URL + '/cliente/' + e.target.value).then(data => {
+        await axios.delete(URL + 'cliente/' + e.target.value).then(data => {
             console.log('hecho');
             data ? ListarClientes() : alert("Ocurrió un error")
         }).catch(err => console.log(err));
@@ -66,7 +66,7 @@ function Listar() {
                                     <td>{value.Llantas}</td>
                                     <td>{value.Refrigeracion}</td>
                                     <td>{value.Suspension}</td>
-                                    <td>{value.VarloMoto}</td>
+                                    <td>{value.ValorMoto}</td>
                                     <td>{value.ValorSoat}</td>
                                     <td>{value.valorTotal}</td>
                                     <td>{value.IdCliente}</td>
@@ -75,6 +75,7 @@ function Listar() {
                         })}
                     </tbody>
             </table>
+            <Link className='link' to='/moto'>Crear Compra</Link>
         </div>
         <div className='container'>
             <table className='table'>
@@ -100,13 +101,14 @@ function Listar() {
                                 <td>{element.Telefono}</td>
                                 <td>{element.Direccion}</td>
                                 <td>{element.Ciudad}</td>
-                                <td><button onClick={EliminarCliente} value={element.IdCliente}>Eliminar</button></td>
-                                <td><button><Link to={'/cliente/' + element.IdCliente}>Editar</Link></button></td>
+                                <td><button className='btn btn-primary' onClick={EliminarCliente} value={element.IdCliente}>Eliminar</button></td>
+                                <td><button className='btn btn-danger'><Link className='badge badge-danger' to={'/cliente/' + element.IdCliente}>Editar</Link></button></td>
                             </tr>
                         )
                     })}
                 </tbody>
             </table>
+            <Link className='link' to='/cliente'>Registrar Cliente</Link>
         </div>
     </>
   )

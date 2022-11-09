@@ -1,7 +1,8 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
-import { useRef, useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom'
+import { useRef, useEffect } from 'react';
 import axios from 'axios';
+import './Cliente.css'
 
 export default function Cliente() {
     const URL = 'http://www.appmotosasp.somee.com/api/cliente/';
@@ -28,7 +29,12 @@ export default function Cliente() {
             Ciudad : Ciudad.current.value
         };
         console.log(data);
-        await axios.put(URL + id, data).then(data => data.data[0].Error ? new Error(data.data[0].Message) : alert(data.data[0].Message)).catch(err => alert(data.data[0].Message));
+        if(id){
+            await axios.put(URL + id, data).then(data => data.data ?  alert("Cliente actualizado correctamente"): new Error("Hubo un error, intente más tarde")).catch(err => alert(data.data[0].Message));
+        }
+        else{
+            await axios.post(URL + id, data).then(data => data.data ?  alert("Cliente creado correctamente"): new Error("Hubo un error, intente más tarde")).catch(err => alert(data.data[0].Message));
+        }
         id_cliente.current.value = null;
         Nombre.current.value = null;
         Apellido.current.value = null;
@@ -57,6 +63,8 @@ export default function Cliente() {
     });
 
     return (
+    <> 
+        <h2>Registrar Cliente</h2>
         <div className='container w-25 mx-auto'>
             <form onSubmit={enviarCliente}>
                 <div className='form-group'>
@@ -87,8 +95,10 @@ export default function Cliente() {
                     <label htmlFor='ciudad'>Ciudad</label>
                     <input ref={Ciudad} className='form-control' id='ciudad' placeholder='Ingresa la Ciudad'/>
                 </div>
-                <button  type='submit' className='btn btn-primary mt-3'>{id ? 'Actualizar' : 'Crear'}</button>
+                <button  type='submit' className='btn btn-primary mt-3 mb-2'>{id ? 'Actualizar' : 'Crear'}</button>
             </form>
+            <Link className='link' to='/' >Volver</Link>
         </div>
+    </>
     )
 }

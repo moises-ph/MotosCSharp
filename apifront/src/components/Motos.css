@@ -1,0 +1,18 @@
+h2{
+    text-align: center;
+}
+
+.link{
+    padding: 1%;
+    font-size: 1rem;
+    background-color: #0062cc;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.25s;
+}
+
+.link:hover{
+    background-color: aliceblue;
+    color: #0062cc;
+}
